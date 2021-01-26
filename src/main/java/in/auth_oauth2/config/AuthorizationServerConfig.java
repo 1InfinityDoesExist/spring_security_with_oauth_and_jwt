@@ -20,55 +20,17 @@ import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
+import in.auth_oauth2.security.ClientDetailsServiceImpl;
+
 @EnableAuthorizationServer
 @Configuration
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
-
-	/*
-	 * 0oa71ctnSxLOSmSwE5d5
-	 */
-	@Value("${auth.clientId}")
-	private String clientId;
-
-	/*
-	 * $2y$12$JeKuQ5yUQLuZ03cEsRgUm.JX6lm/C6qN3ALHWaWQmHQNrPsc3EKjG
-	 */
 
 	@Value("${auth.private.key}")
 	private String privateKey;
 
 	@Value("${auth.public.key}")
 	private String publicKey;
-
-	@Value("${auth.clientSecret}")
-	private String clientSecret;
-
-	@Value("${auth.grantTypePassword}")
-	private String grantTypePassword;
-
-	@Value("${auth.authorizationCode:authorization_code}")
-	private String authorizationCode;
-
-	@Value("${auth.refreshToken:refresh_token}")
-	private String refreshToken;
-
-	@Value("${auth.implicit:implicit}")
-	private String implicit;
-
-	@Value("${auth.scopeRead:read}")
-	private String scopeRead;
-
-	@Value("${auth.scopeWrite:write}")
-	private String scopeWrite;
-
-	@Value("${auth.trust:trust}")
-	private String trust;
-
-	@Value("${auth.accessTokenValiditySeconds:42000}")
-	private int accessTokenValiditySeconds;
-
-	@Value("${auth.refreshTokenValiditySeconds:216000}")
-	private int refreshTokenValiditySeconds;
 
 	@Value("${auth.jwt.signingKey}")
 	private String signingKey;
@@ -93,15 +55,14 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 		security.tokenKeyAccess("permitAll()").checkTokenAccess("isAuthenticated()").passwordEncoder(passwordEncoder);
 	}
 
-	/*
-	 * 
-	 */
+	@Bean
+	public ClientDetailsServiceImpl clientDetailsServiceImpl() {
+		return new ClientDetailsServiceImpl();
+	}
+
 	@Override
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-		clients.inMemory().withClient(clientId).secret(passwordEncoder.encode(clientSecret))
-				.authorizedGrantTypes(grantTypePassword, authorizationCode, refreshToken, implicit)
-				.scopes(scopeRead, scopeWrite, trust).accessTokenValiditySeconds(accessTokenValiditySeconds)
-				.refreshTokenValiditySeconds(refreshTokenValiditySeconds);
+		clients.withClientDetails(clientDetailsServiceImpl());
 	}
 
 	@Override
@@ -112,10 +73,6 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 				.accessTokenConverter(accessTokenConverter()).tokenEnhancer(tokenEnhancerChain);
 	}
 
-	/*
-	 * Implement TokenEnhancer Interface to change the token Response. You can add
-	 * some more attribute if you want
-	 */
 	@Bean
 	public TokenEnhancer tokenEnhancer() {
 		return new CustomTokenEnhancer();
