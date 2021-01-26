@@ -29,9 +29,9 @@ import lombok.extern.slf4j.Slf4j;
 @Service("userInfoOauthService")
 public class UserInfoOauth implements UserDetailsService {
 
-	private UserInfoRepository userInfoRepository;
+	private final UserInfoRepository userInfoRepository;
 
-	private RoleRepository roleRepository;
+	private final RoleRepository roleRepository;
 
 	@Autowired
 	public UserInfoOauth(UserInfoRepository userInfoRepository, RoleRepository roleRepository) {
