@@ -36,7 +36,6 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	private String signingKey;
 
 	@Autowired
-	@Qualifier("authenticationManagerBean")
 	private AuthenticationManager authenticationManager;
 
 	@Autowired
@@ -52,7 +51,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	 */
 	@Override
 	public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
-		security.tokenKeyAccess("permitAll()").checkTokenAccess("isAuthenticated()").passwordEncoder(passwordEncoder);
+		security.tokenKeyAccess("permitAll()").checkTokenAccess("isAuthenticated()");
 	}
 
 	@Bean
@@ -62,7 +61,9 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
 	@Override
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-		clients.withClientDetails(clientDetailsServiceImpl());
+		 clients.withClientDetails(clientDetailsServiceImpl());
+//		clients.inMemory().withClient("netflix").secret(passwordEncoder.encode("netflix"))
+//				.authorizedGrantTypes("password", "refresh_token");
 	}
 
 	@Override

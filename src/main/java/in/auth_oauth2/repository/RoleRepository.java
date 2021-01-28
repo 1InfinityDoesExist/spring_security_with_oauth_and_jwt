@@ -8,4 +8,8 @@ import in.auth_oauth2.entity.Role;
 @Repository
 public interface RoleRepository extends MongoRepository<Role, String> {
 
+	public Role findRoleByProductIdAndName(String id, String name);
+
+	public Role findRoleById(String role);
+
 }

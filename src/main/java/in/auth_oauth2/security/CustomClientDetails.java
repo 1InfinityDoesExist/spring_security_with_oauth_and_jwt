@@ -29,7 +29,7 @@ public class CustomClientDetails implements ClientDetails {
 
 	@Override
 	public Set<String> getResourceIds() {
-		return clientDetailsEntity.getGetResourceIds();
+		return clientDetailsEntity.getResourceIds();
 	}
 
 	@Override
@@ -39,7 +39,7 @@ public class CustomClientDetails implements ClientDetails {
 
 	@Override
 	public String getClientSecret() {
-		return clientDetailsEntity.getGetClientSecret();
+		return clientDetailsEntity.getClientSecret();
 	}
 
 	@Override
@@ -49,32 +49,32 @@ public class CustomClientDetails implements ClientDetails {
 
 	@Override
 	public Set<String> getScope() {
-		return clientDetailsEntity.getGetScope();
+		return clientDetailsEntity.getScope();
 	}
 
 	@Override
 	public Set<String> getAuthorizedGrantTypes() {
-		return clientDetailsEntity.getGetAuthorizedGrantTypes();
+		return clientDetailsEntity.getAuthorizedGrantTypes();
 	}
 
 	@Override
 	public Set<String> getRegisteredRedirectUri() {
-		return clientDetailsEntity.getGetRegisteredRedirectUri();
+		return clientDetailsEntity.getRegisteredRedirectUri();
 	}
 
 	@Override
 	public Collection<GrantedAuthority> getAuthorities() {
-		return clientDetailsEntity.getGetAuthorities();
+		return clientDetailsEntity.getAuthorities();
 	}
 
 	@Override
 	public Integer getAccessTokenValiditySeconds() {
-		return clientDetailsEntity.getGetAccessTokenValiditySeconds();
+		return clientDetailsEntity.getAccessTokenValiditySeconds();
 	}
 
 	@Override
 	public Integer getRefreshTokenValiditySeconds() {
-		return clientDetailsEntity.getGetRefreshTokenValiditySeconds();
+		return clientDetailsEntity.getRefreshTokenValiditySeconds();
 	}
 
 	@Override
@@ -84,7 +84,7 @@ public class CustomClientDetails implements ClientDetails {
 
 	@Override
 	public Map<String, Object> getAdditionalInformation() {
-		return clientDetailsEntity.getGetAdditionalInformation();
+		return clientDetailsEntity.getAdditionalInformation();
 	}
 
 }
