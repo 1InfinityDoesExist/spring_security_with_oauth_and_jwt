@@ -23,7 +23,7 @@ public class ClientDetailsEntity {
 	 * 
 	 * @return The resources of this client.
 	 */
-	private Set<String> getResourceIds;
+	private Set<String> resourceIds;
 	/**
 	 * Whether a secret is required to authenticate this client.
 	 * 
@@ -36,7 +36,7 @@ public class ClientDetailsEntity {
 	 * 
 	 * @return The client secret.
 	 */
-	private String getClientSecret;
+	private String clientSecret;
 	/**
 	 * Whether this client is limited to a specific scope. If false, the scope of
 	 * the authentication request will be ignored.
@@ -49,20 +49,20 @@ public class ClientDetailsEntity {
 	 * 
 	 * @return The scope of this client.
 	 */
-	private Set<String> getScope;
+	private Set<String> scope;
 	/**
 	 * The grant types for which this client is authorized.
 	 * 
 	 * @return The grant types for which this client is authorized.
 	 */
-	private Set<String> getAuthorizedGrantTypes;
+	private Set<String> authorizedGrantTypes;
 	/**
 	 * The pre-defined redirect URI for this client to use during the
 	 * "authorization_code" access grant. See OAuth spec, section 4.1.1.
 	 * 
 	 * @return The pre-defined redirect URI for this client.
 	 */
-	private Set<String> getRegisteredRedirectUri;
+	private Set<String> registeredRedirectUri;
 	/**
 	 * Returns the authorities that are granted to the OAuth client. Cannot return
 	 * <code>null</code>. Note that these are NOT the authorities that are granted
@@ -71,7 +71,7 @@ public class ClientDetailsEntity {
 	 * 
 	 * @return the authorities (never <code>null</code>)
 	 */
-	private Collection<GrantedAuthority> getAuthorities;
+	private Collection<GrantedAuthority> authorities;
 	/**
 	 * The access token validity period for this client. Null if not set explicitly
 	 * (implementations might use that fact to provide a default value for
@@ -79,14 +79,14 @@ public class ClientDetailsEntity {
 	 * 
 	 * @return the access token validity period
 	 */
-	private Integer getAccessTokenValiditySeconds;
+	private Integer accessTokenValiditySeconds;
 	/**
 	 * The refresh token validity period for this client. Null for default value set
 	 * by token service, and zero or negative for non-expiring tokens.
 	 * 
 	 * @return the refresh token validity period
 	 */
-	private Integer getRefreshTokenValiditySeconds;
+	private Integer refreshTokenValiditySeconds;
 	/**
 	 * Test whether client needs user approval for a particular scope.
 	 * 
@@ -101,5 +101,5 @@ public class ClientDetailsEntity {
 	 * 
 	 * @return a map of additional information
 	 */
-	private Map<String, Object> getAdditionalInformation;
+	private Map<String, Object> additionalInformation;
 }
