@@ -4,8 +4,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 @lombok.Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class RoleCreateRequest {
+public class ProductCreateRequest {
 	private String name;
 	private String description;
-	private String productId;
+	private String domain;
 }
