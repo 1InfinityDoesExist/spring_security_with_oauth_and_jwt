@@ -41,17 +41,9 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
-	/*
-	 * This is mainly for validation for resource server
-	 *
-	 * by default it denies all
-	 * http://localhost:8080/oauth/check_token?token=839fcd96-5032-48f1-a0c0-
-	 * 6aa4732d519d add .checkTokenAccess("isAuthenticated()") pass basic auth add
-	 * .checkTokenAccess("permitAll()") disable basic auth bad approach
-	 */
 	@Override
 	public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
-		security.tokenKeyAccess("permitAll()").checkTokenAccess("isAuthenticated()");
+		security.tokenKeyAccess("permitAll()").checkTokenAccess("isAuthenticated()").passwordEncoder(passwordEncoder);
 	}
 
 	@Bean
@@ -61,9 +53,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
 	@Override
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-		 clients.withClientDetails(clientDetailsServiceImpl());
-//		clients.inMemory().withClient("netflix").secret(passwordEncoder.encode("netflix"))
-//				.authorizedGrantTypes("password", "refresh_token");
+		clients.withClientDetails(clientDetailsServiceImpl());
 	}
 
 	@Override
