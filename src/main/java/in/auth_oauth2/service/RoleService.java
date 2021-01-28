@@ -8,5 +8,5 @@ import in.auth_oauth2.model.response.RoleCreateResponse;
 @Component
 public interface RoleService {
 
-	public RoleCreateResponse presistRole(RoleCreateRequest roleCreateRequest);
+	public RoleCreateResponse presistRole(RoleCreateRequest roleCreateRequest) throws Exception;
 }
